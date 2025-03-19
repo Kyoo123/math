@@ -1,53 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Komplexe Zahlen Umrechner</title>
-    <link rel="stylesheet" href="style.css">
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Index</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Subtle gradient background */
+            color: #333;
+        }
 
+        .container {
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white box */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #4c566a; /* Softer dark color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-list li {
+            margin-bottom: 20px;
+        }
+
+        .link-list a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #5e81ac; /* A calming blue */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .link-list a:hover {
+            background-color: #81a1c1; /* Lighter blue on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Optional: Add a subtle animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeIn 0.8s ease-out;
+        }
+    </style>
 </head>
 <body>
-<h1>Komplexe Zahlen Umrechner</h1>
-
-<div class="container">
-    <h2>Kartesisch zu Polar</h2>
-    <label for="realteil">Realteil:</label>
-    <input type="number" id="realteil"><br><br>
-    <label for="imaginaerteil">Imaginärteil:</label>
-    <input type="number" id="imaginaerteil"><br><br>
-    <button onclick="kartesischZuPolar()">Umrechnen</button><br><br>
-    <p id="polarErgebnis"></p>
-</div>
-
-<div class="container">
-    <h2>Polar zu Kartesisch</h2>
-    <label for="radius">Radius:</label>
-    <input type="number" id="radius"><br><br>
-    <label for="winkel">Winkel (Grad):</label>
-    <input type="number" id="winkel"><br><br>
-    <button onclick="polarZuKartesisch()">Umrechnen</button><br><br>
-    <p id="kartesischErgebnis"></p>
-</div>
-
-<div class="container">
-    <h2>Komplexe Zahlen Operationen</h2>
-    <label for="realteil1">Realteil 1:</label>
-    <input type="number" id="realteil1"><br><br>
-    <label for="imaginaerteil1">Imaginärteil 1:</label>
-    <input type="number" id="imaginaerteil1"><br><br>
-    <label for="realteil2">Realteil 2:</label>
-    <input type="number" id="realteil2"><br><br>
-    <label for="imaginaerteil2">Imaginärteil 2:</label>
-    <input type="number" id="imaginaerteil2"><br><br>
-    <button onclick="addieren()">Addieren</button>
-    <button onclick="subtrahieren()">Subtrahieren</button>
-    <button onclick="multiplizieren()">Multiplizieren</button>
-    <button onclick="dividieren()">Dividieren</button><br><br>
-    <p id="operationErgebnis"></p>
-</div>
-
-<script src="script.js"></script>
+    <div class="container">
+        <h1>My Links</h1>
+        <ul class="link-list">
+            <li><a href="page1.html">Page 1</a></li>
+            <li><a href="page2.html">Page 2</a></li>
+            <li><a href="page3.html">Page 3</a></li>
+            <li><a href="page4.html">Page 4</a></li>
+             <li><a href="page5.html">Page 5</a></li>
+        </ul>
+    </div>
 </body>
 </html>

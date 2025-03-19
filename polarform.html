@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Komplexe Zahlen Umrechner</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+</head>
+<body>
+<h1>Komplexe Zahlen Umrechner</h1>
+
+<div class="container">
+    <h2>Kartesisch zu Polar</h2>
+    <label for="realteil">Realteil:</label>
+    <input type="number" id="realteil"><br><br>
+    <label for="imaginaerteil">Imaginärteil:</label>
+    <input type="number" id="imaginaerteil"><br><br>
+    <button onclick="kartesischZuPolar()">Umrechnen</button><br><br>
+    <p id="polarErgebnis"></p>
+</div>
+
+<div class="container">
+    <h2>Polar zu Kartesisch</h2>
+    <label for="radius">Radius:</label>
+    <input type="number" id="radius"><br><br>
+    <label for="winkel">Winkel (Grad):</label>
+    <input type="number" id="winkel"><br><br>
+    <button onclick="polarZuKartesisch()">Umrechnen</button><br><br>
+    <p id="kartesischErgebnis"></p>
+</div>
+
+<div class="container">
+    <h2>Komplexe Zahlen Operationen</h2>
+    <label for="realteil1">Realteil 1:</label>
+    <input type="number" id="realteil1"><br><br>
+    <label for="imaginaerteil1">Imaginärteil 1:</label>
+    <input type="number" id="imaginaerteil1"><br><br>
+    <label for="realteil2">Realteil 2:</label>
+    <input type="number" id="realteil2"><br><br>
+    <label for="imaginaerteil2">Imaginärteil 2:</label>
+    <input type="number" id="imaginaerteil2"><br><br>
+    <button onclick="addieren()">Addieren</button>
+    <button onclick="subtrahieren()">Subtrahieren</button>
+    <button onclick="multiplizieren()">Multiplizieren</button>
+    <button onclick="dividieren()">Dividieren</button><br><br>
+    <p id="operationErgebnis"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
