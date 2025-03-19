@@ -10,21 +10,19 @@ Diese Website bietet eine Sammlung von Rechnern, die für meine Schulprüfungen 
     * Wandelt eine komplexe Zahl in Polarform in ihre Winkelform um.
 * **Winkelform zu Polarform:**
     * Wandelt eine komplexe Zahl in Winkelform in ihre Polarform um.
+* **Paralellogramm rechner**
 * **Externe Rechner:**
     * Links zu nützlichen externen Rechnern von Drittanbietern.
 
 ## Externe Rechner
 
-<details>
-  <summary>Komplexe Zahlen Addition</summary>
-  * [Komplexe Zahlen Addition](Hier_den_Link_einfügen)
-</details>
 
-## Zukünftige Funktionen
-
-* Weitere Rechner für andere mathematische Konzepte.
-* Verbesserungen der Benutzeroberfläche.
-* Fehlerbehebungen und Leistungsoptimierungen.
+* **Komplexe Zahlen Addition** 
+* **Komplexe Zahlen Subtraktion**
+* **Komplexe Zahlen Multiplikation**
+* **Komplexe Zahlen Division**
+* **Vektoren Berechnen**
+* **Vektoren Addieren**
 
 ## Verwendung
 

@@ -19,7 +19,7 @@
 
         table {
             border-collapse: collapse;
-            width: 400px;
+            width: 300px;
             margin-bottom: 20px;
         }
 
@@ -37,11 +37,6 @@
             border: 1px solid #ccc;
             margin-bottom: 20px;
         }
-
-        #einstellungen {
-            margin-bottom: 10px;
-        }
-
     </style>
 </head>
 <body>
@@ -49,41 +44,33 @@
 
 <div class="input-container">
     <label for="a-x">Punkt A (x):</label>
-    <input type="number" id="a-x" value="8">
+    <input type="number" id="a-x">
     <label for="a-y">Punkt A (y):</label>
-    <input type="number" id="a-y" value="4"><br>
+    <input type="number" id="a-y"><br>
 
     <label for="b-x">Punkt B (x):</label>
-    <input type="number" id="b-x" value="5">
+    <input type="number" id="b-x">
     <label for="b-y">Punkt B (y):</label>
-    <input type="number" id="b-y" value="6"><br>
+    <input type="number" id="b-y"><br>
 
     <label for="c-x">Punkt C (x):</label>
-    <input type="number" id="c-x" value="-2">
+    <input type="number" id="c-x">
     <label for="c-y">Punkt C (y):</label>
-    <input type="number" id="c-y" value="1"><br>
+    <input type="number" id="c-y"><br>
 
     <button onclick="berechneParallelogramm()">Berechnen</button>
 </div>
 
-<div id="einstellungen">
-    <label for="scale">Skalierung:</label>
-    <input type="number" id="scale" value="20">
-</div>
-
 <div id="ergebnisse">
     <h2>Ergebnisse</h2>
-    <div id="rechenschritte"></div>
-    <table id="punkt-table">
+    <table id="punkt-d-table">
         <tr>
-            <th>Punkt</th>
-            <th>x</th>
-            <th>y</th>
+            <th>Punkt D (x)</th>
+            <th>Punkt D (y)</th>
         </tr>
     </table>
     <p id="mittelpunkt"></p>
 </div>
-
 <div id="canvas-container">
     <canvas id="parallelogrammCanvas" width="500" height="500"></canvas>
 </div>
@@ -103,58 +90,28 @@
         const mx = (ax + cx) / 2;
         const my = (ay + cy) / 2;
 
-        document.getElementById('punkt-table').innerHTML = `
+        document.getElementById('punkt-d-table').innerHTML = `
                 <tr>
-                    <th>Punkt</th>
-                    <th>x</th>
-                    <th>y</th>
+                    <th>Punkt D (x)</th>
+                    <th>Punkt D (y)</th>
                 </tr>
                 <tr>
-                    <td>A</td>
-                    <td>${ax}</td>
-                    <td>${ay}</td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td>${bx}</td>
-                    <td>${by}</td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td>${cx}</td>
-                    <td>${cy}</td>
-                </tr>
-                <tr>
-                    <td>D</td>
                     <td>${dx}</td>
                     <td>${dy}</td>
-                </tr>
-                <tr>
-                    <td>M</td>
-                    <td>${mx}</td>
-                    <td>${my}</td>
                 </tr>
             `;
 
         document.getElementById('mittelpunkt').textContent = `Mittelpunkt M: (${mx}, ${my})`;
+        zeichneParallelogramm(ax, ay, bx, by, cx, cy, dx, dy, mx, my);
 
-        document.getElementById('rechenschritte').innerHTML = `
-                <h3>Rechenschritte</h3>
-                <p>D(x) = A(x) + C(x) - B(x) = ${ax} + ${cx} - ${bx} = ${dx}</p>
-                <p>D(y) = A(y) + C(y) - B(y) = ${ay} + ${cy} - ${by} = ${dy}</p>
-                <p>M(x) = (A(x) + C(x)) / 2 = (${ax} + ${cx}) / 2 = ${mx}</p>
-                <p>M(y) = (A(y) + C(y)) / 2 = (${ay} + ${cy}) / 2 = ${my}</p>
-            `;
-
-        const scale = parseInt(document.getElementById('scale').value);
-        zeichneParallelogramm(ax, ay, bx, by, cx, cy, dx, dy, mx, my, scale);
     }
 
-    function zeichneParallelogramm(ax, ay, bx, by, cx, cy, dx, dy, mx, my, scale) {
+    function zeichneParallelogramm(ax, ay, bx, by, cx, cy, dx, dy, mx, my) {
         const canvas = document.getElementById("parallelogrammCanvas");
         const ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0,0, canvas.width, canvas.height);
 
+        const scale = 20; // Adjust scale as needed
         const offsetX = canvas.width / 2;
         const offsetY = canvas.height / 2;
 
@@ -172,45 +129,6 @@
             ctx.lineTo(x2 * scale + offsetX, -y2 * scale + offsetY);
             ctx.stroke();
         }
-
-        function drawGrid() {
-            ctx.strokeStyle = "#eee";
-            for (let x = -canvas.width / 2; x < canvas.width / 2; x += scale) {
-                ctx.beginPath();
-                ctx.moveTo(x + offsetX, 0);
-                ctx.lineTo(x + offsetX, canvas.height);
-                ctx.stroke();
-            }
-            for (let y = -canvas.height / 2; y < canvas.height / 2; y += scale) {
-                ctx.beginPath();
-                ctx.moveTo(0, y + offsetY);
-                ctx.lineTo(canvas.width, y + offsetY);
-                ctx.stroke();
-            }
-        }
-
-        function drawAxes() {
-            ctx.strokeStyle = "black";
-            ctx.beginPath();
-            ctx.moveTo(0, offsetY);
-            ctx.lineTo(canvas.width, offsetY);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.moveTo(offsetX, 0);
-            ctx.lineTo(offsetX, canvas.height);
-            ctx.stroke();
-
-            ctx.fillStyle = "black";
-            ctx.font = "12px Arial";
-            for (let i = -10; i <= 10; i++) {
-                ctx.fillText(i, i * scale + offsetX + 2, offsetY + 12);
-                ctx.fillText(-i, offsetX + 2, i * scale + offsetY + 12);
-            }
-        }
-
-        drawGrid();
-        drawAxes();
 
         drawPoint(ax, ay, "red");
         drawPoint(bx, by, "blue");
