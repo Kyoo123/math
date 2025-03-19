@@ -1,228 +1,92 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parallelogramm-Rechner</title>
+    <title>My Index</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0); /* Subtle gradient background */
+            color: #333;
         }
 
-        .input-container {
-            margin-bottom: 20px;
-        }
-
-        table {
-            border-collapse: collapse;
-            width: 400px;
-            margin-bottom: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
+        .container {
             text-align: center;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white box */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
         }
 
-        th {
-            background-color: #f2f2f2;
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #4c566a; /* Softer dark color */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
         }
 
-        #canvas-container {
-            border: 1px solid #ccc;
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-list li {
             margin-bottom: 20px;
         }
 
-        #einstellungen {
-            margin-bottom: 10px;
+        .link-list a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #5e81ac; /* A calming blue */
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
 
+        .link-list a:hover {
+            background-color: #81a1c1; /* Lighter blue on hover */
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Optional: Add a subtle animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeIn 0.8s ease-out;
+        }
     </style>
 </head>
 <body>
-<h1>Parallelogramm-Rechner</h1>
-
-<div class="input-container">
-    <label for="a-x">Punkt A (x):</label>
-    <input type="number" id="a-x" value="8">
-    <label for="a-y">Punkt A (y):</label>
-    <input type="number" id="a-y" value="4"><br>
-
-    <label for="b-x">Punkt B (x):</label>
-    <input type="number" id="b-x" value="5">
-    <label for="b-y">Punkt B (y):</label>
-    <input type="number" id="b-y" value="6"><br>
-
-    <label for="c-x">Punkt C (x):</label>
-    <input type="number" id="c-x" value="-2">
-    <label for="c-y">Punkt C (y):</label>
-    <input type="number" id="c-y" value="1"><br>
-
-    <button onclick="berechneParallelogramm()">Berechnen</button>
+<div class="container">
+    <h1>My Links</h1>
+    <ul class="link-list">
+        <li><a href="./polarform.html">Polarform</a></li>
+        <li><a href="./paralellogramm.html">Paralellogramm</a></li>
+        <li><a href="https://www.mathespass.at/klasse5/vektori.php">Vektoren Rechner</a></li>
+        <li><a href="https://www.mathespass.at/klasse7/komplexe_zahlen_rechner.php">Komplexe Zahlen</a></li>
+    </ul>
 </div>
-
-<div id="einstellungen">
-    <label for="scale">Skalierung:</label>
-    <input type="number" id="scale" value="20">
-</div>
-
-<div id="ergebnisse">
-    <h2>Ergebnisse</h2>
-    <div id="rechenschritte"></div>
-    <table id="punkt-table">
-        <tr>
-            <th>Punkt</th>
-            <th>x</th>
-            <th>y</th>
-        </tr>
-    </table>
-    <p id="mittelpunkt"></p>
-</div>
-
-<div id="canvas-container">
-    <canvas id="parallelogrammCanvas" width="500" height="500"></canvas>
-</div>
-
-<script>
-    function berechneParallelogramm() {
-        const ax = parseFloat(document.getElementById('a-x').value);
-        const ay = parseFloat(document.getElementById('a-y').value);
-        const bx = parseFloat(document.getElementById('b-x').value);
-        const by = parseFloat(document.getElementById('b-y').value);
-        const cx = parseFloat(document.getElementById('c-x').value);
-        const cy = parseFloat(document.getElementById('c-y').value);
-
-        const dx = ax + cx - bx;
-        const dy = ay + cy - by;
-
-        const mx = (ax + cx) / 2;
-        const my = (ay + cy) / 2;
-
-        document.getElementById('punkt-table').innerHTML = `
-                <tr>
-                    <th>Punkt</th>
-                    <th>x</th>
-                    <th>y</th>
-                </tr>
-                <tr>
-                    <td>A</td>
-                    <td>${ax}</td>
-                    <td>${ay}</td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td>${bx}</td>
-                    <td>${by}</td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td>${cx}</td>
-                    <td>${cy}</td>
-                </tr>
-                <tr>
-                    <td>D</td>
-                    <td>${dx}</td>
-                    <td>${dy}</td>
-                </tr>
-                <tr>
-                    <td>M</td>
-                    <td>${mx}</td>
-                    <td>${my}</td>
-                </tr>
-            `;
-
-        document.getElementById('mittelpunkt').textContent = `Mittelpunkt M: (${mx}, ${my})`;
-
-        document.getElementById('rechenschritte').innerHTML = `
-                <h3>Rechenschritte</h3>
-                <p>D(x) = A(x) + C(x) - B(x) = ${ax} + ${cx} - ${bx} = ${dx}</p>
-                <p>D(y) = A(y) + C(y) - B(y) = ${ay} + ${cy} - ${by} = ${dy}</p>
-                <p>M(x) = (A(x) + C(x)) / 2 = (${ax} + ${cx}) / 2 = ${mx}</p>
-                <p>M(y) = (A(y) + C(y)) / 2 = (${ay} + ${cy}) / 2 = ${my}</p>
-            `;
-
-        const scale = parseInt(document.getElementById('scale').value);
-        zeichneParallelogramm(ax, ay, bx, by, cx, cy, dx, dy, mx, my, scale);
-    }
-
-    function zeichneParallelogramm(ax, ay, bx, by, cx, cy, dx, dy, mx, my, scale) {
-        const canvas = document.getElementById("parallelogrammCanvas");
-        const ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const offsetX = canvas.width / 2;
-        const offsetY = canvas.height / 2;
-
-        function drawPoint(x, y, color) {
-            ctx.fillStyle = color;
-            ctx.beginPath();
-            ctx.arc(x * scale + offsetX, -y * scale + offsetY, 5, 0, 2 * Math.PI);
-            ctx.fill();
-        }
-
-        function drawLine(x1, y1, x2, y2) {
-            ctx.strokeStyle = "black";
-            ctx.beginPath();
-            ctx.moveTo(x1 * scale + offsetX, -y1 * scale + offsetY);
-            ctx.lineTo(x2 * scale + offsetX, -y2 * scale + offsetY);
-            ctx.stroke();
-        }
-
-        function drawGrid() {
-            ctx.strokeStyle = "#eee";
-            for (let x = -canvas.width / 2; x < canvas.width / 2; x += scale) {
-                ctx.beginPath();
-                ctx.moveTo(x + offsetX, 0);
-                ctx.lineTo(x + offsetX, canvas.height);
-                ctx.stroke();
-            }
-            for (let y = -canvas.height / 2; y < canvas.height / 2; y += scale) {
-                ctx.beginPath();
-                ctx.moveTo(0, y + offsetY);
-                ctx.lineTo(canvas.width, y + offsetY);
-                ctx.stroke();
-            }
-        }
-
-        function drawAxes() {
-            ctx.strokeStyle = "black";
-            ctx.beginPath();
-            ctx.moveTo(0, offsetY);
-            ctx.lineTo(canvas.width, offsetY);
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.moveTo(offsetX, 0);
-            ctx.lineTo(offsetX, canvas.height);
-            ctx.stroke();
-
-            ctx.fillStyle = "black";
-            ctx.font = "12px Arial";
-            for (let i = -10; i <= 10; i++) {
-                ctx.fillText(i, i * scale + offsetX + 2, offsetY + 12);
-                ctx.fillText(-i, offsetX + 2, i * scale + offsetY + 12);
-            }
-        }
-
-        drawGrid();
-        drawAxes();
-
-        drawPoint(ax, ay, "red");
-        drawPoint(bx, by, "blue");
-        drawPoint(cx, cy, "green");
-        drawPoint(dx, dy, "purple");
-        drawPoint(mx, my, "orange");
-
-        drawLine(ax, ay, bx, by);
-        drawLine(bx, by, cx, cy);
-        drawLine(cx, cy, dx, dy);
-        drawLine(dx, dy, ax, ay);
-    }
-</script>
 </body>
 </html>
