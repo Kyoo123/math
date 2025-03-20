@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -42,7 +41,6 @@
         #einstellungen {
             margin-bottom: 10px;
         }
-
     </style>
 </head>
 <body>
@@ -91,6 +89,7 @@
 
 <script>
     function berechneParallelogramm() {
+        // Eingabewerte einlesen
         const ax = parseFloat(document.getElementById('a-x').value);
         const ay = parseFloat(document.getElementById('a-y').value);
         const bx = parseFloat(document.getElementById('b-x').value);
@@ -98,56 +97,70 @@
         const cx = parseFloat(document.getElementById('c-x').value);
         const cy = parseFloat(document.getElementById('c-y').value);
 
-        const dx = ax + cx - bx;
-        const dy = ay + cy - by;
+        // Überprüfen, ob die Eingaben gültige Zahlen sind
+        if (isNaN(ax) || isNaN(ay) || isNaN(bx) || isNaN(by) || isNaN(cx) || isNaN(cy)) {
+            alert("Bitte geben Sie gültige Zahlen ein!");
+            return;
+        }
 
+        // Punkt D korrekt berechnen
+        const dx = bx + cx - ax; // Korrekte Formel: D = B + C - A
+        const dy = by + cy - ay;
+
+        // Mittelpunkt M berechnen
         const mx = (ax + cx) / 2;
         const my = (ay + cy) / 2;
 
+        // Ergebnisse in der Tabelle anzeigen
         document.getElementById('punkt-table').innerHTML = `
-                <tr>
-                    <th>Punkt</th>
-                    <th>x</th>
-                    <th>y</th>
-                </tr>
-                <tr>
-                    <td>A</td>
-                    <td>${ax}</td>
-                    <td>${ay}</td>
-                </tr>
-                <tr>
-                    <td>B</td>
-                    <td>${bx}</td>
-                    <td>${by}</td>
-                </tr>
-                <tr>
-                    <td>C</td>
-                    <td>${cx}</td>
-                    <td>${cy}</td>
-                </tr>
-                <tr>
-                    <td>D</td>
-                    <td>${dx}</td>
-                    <td>${dy}</td>
-                </tr>
-                <tr>
-                    <td>M</td>
-                    <td>${mx}</td>
-                    <td>${my}</td>
-                </tr>
-            `;
+            <tr>
+                <th>Punkt</th>
+                <th>x</th>
+                <th>y</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>${ax}</td>
+                <td>${ay}</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>${bx}</td>
+                <td>${by}</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>${cx}</td>
+                <td>${cy}</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>${dx}</td>
+                <td>${dy}</td>
+            </tr>
+            <tr>
+                <td>M</td>
+                <td>${mx}</td>
+                <td>${my}</td>
+            </tr>
+        `;
 
+        // Mittelpunkt anzeigen
         document.getElementById('mittelpunkt').textContent = `Mittelpunkt M: (${mx}, ${my})`;
 
+        // Rechenschritte anzeigen
         document.getElementById('rechenschritte').innerHTML = `
-                <h3>Rechenschritte</h3>
-                <p>D(x) = A(x) + C(x) - B(x) = ${ax} + ${cx} - ${bx} = ${dx}</p>
-                <p>D(y) = A(y) + C(y) - B(y) = ${ay} + ${cy} - ${by} = ${dy}</p>
-                <p>M(x) = (A(x) + C(x)) / 2 = (${ax} + ${cx}) / 2 = ${mx}</p>
-                <p>M(y) = (A(y) + C(y)) / 2 = (${ay} + ${cy}) / 2 = ${my}</p>
-            `;
+            <h3>Rechenschritte</h3>
+            <p>D(x) = B(x) + C(x) - A(x) = ${bx} + ${cx} - ${ax} = ${dx}</p>
+            <p>D(y) = B(y) + C(y) - A(y) = ${by} + ${cy} - ${ay} = ${dy}</p>
+            <p>M(x) = (A(x) + C(x)) / 2 = (${ax} + ${cx}) / 2 = ${mx}</p>
+            <p>M(y) = (A(y) + C(y)) / 2 = (${ay} + ${cy}) / 2 = ${my}</p>
+        `;
 
+        // Skalierung einlesen
         const scale = parseInt(document.getElementById('scale').value);
+
+        // Parallelogramm zeichnen
         zeichneParallelogramm(ax, ay, bx, by, cx, cy, dx, dy, mx, my, scale);
     }
 
@@ -159,6 +172,7 @@
         const offsetX = canvas.width / 2;
         const offsetY = canvas.height / 2;
 
+        // Funktion zum Zeichnen eines Punkts
         function drawPoint(x, y, color) {
             ctx.fillStyle = color;
             ctx.beginPath();
@@ -166,6 +180,7 @@
             ctx.fill();
         }
 
+        // Funktion zum Zeichnen einer Linie
         function drawLine(x1, y1, x2, y2) {
             ctx.strokeStyle = "black";
             ctx.beginPath();
@@ -174,22 +189,7 @@
             ctx.stroke();
         }
 
-        function drawGrid() {
-            ctx.strokeStyle = "#eee";
-            for (let x = -canvas.width / 2; x < canvas.width / 2; x += scale) {
-                ctx.beginPath();
-                ctx.moveTo(x + offsetX, 0);
-                ctx.lineTo(x + offsetX, canvas.height);
-                ctx.stroke();
-            }
-            for (let y = -canvas.height / 2; y < canvas.height / 2; y += scale) {
-                ctx.beginPath();
-                ctx.moveTo(0, y + offsetY);
-                ctx.lineTo(canvas.width, y + offsetY);
-                ctx.stroke();
-            }
-        }
-
+        // Koordinatensystem zeichnen
         function drawAxes() {
             ctx.strokeStyle = "black";
             ctx.beginPath();
@@ -210,15 +210,17 @@
             }
         }
 
-        drawGrid();
+        // Koordinatensystem zeichnen
         drawAxes();
 
+        // Punkte zeichnen
         drawPoint(ax, ay, "red");
         drawPoint(bx, by, "blue");
         drawPoint(cx, cy, "green");
         drawPoint(dx, dy, "purple");
         drawPoint(mx, my, "orange");
 
+        // Linien zeichnen
         drawLine(ax, ay, bx, by);
         drawLine(bx, by, cx, cy);
         drawLine(cx, cy, dx, dy);
