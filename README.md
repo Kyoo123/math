@@ -23,6 +23,7 @@ Diese Website bietet eine Sammlung von Rechnern, die für meine Schulprüfungen 
 * **Komplexe Zahlen Division**
 * **Vektoren Berechnen**
 * **Vektoren Addieren**
+* **Quadrarische Komplexe Zahlen**
 
 ## Verwendung
 
