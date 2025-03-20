@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematische Berechnungen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .task {
+            margin-bottom: 20px;
+        }
+        .task h2 {
+            color: #555;
+        }
+        .task p {
+            margin: 5px 0;
+        }
+        .result {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .calculation {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid #007BFF;
+            margin: 10px 0;
+        }
+        input {
+            margin: 5px;
+        }
+        button {
+            margin: 10px 0;
+        }
+    </style>
+    <!-- MathJax für mathematische Formeln -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <h1>Mathematische Berechnungen</h1>
+
+    <div class="task">
+        <h2>1. Grundlegende Berechnungen</h2>
+        <p>Berechne \( a - b : c \) und \( d + e \):</p>
+        <label for="a">a:</label>
+        <input type="number" id="a" value="4">
+        <label for="b">b:</label>
+        <input type="number" id="b" value="2">
+        <label for="c">c:</label>
+        <input type="number" id="c" value="5">
+        <label for="d">d:</label>
+        <input type="number" id="d" value="-2">
+        <label for="e">e:</label>
+        <input type="number" id="e" value="5">
+        <button onclick="calculateBasic()">Berechnen</button>
+        <div class="calculation" id="basic-calculation"></div>
+    </div>
+
+    <div class="task">
+        <h2>2. Vektorberechnungen</h2>
+        <p>Berechne den Vektor \( D = C + \frac{f}{g} \):</p>
+        <label for="cx">Cx:</label>
+        <input type="number" id="cx" value="-2">
+        <label for="cy">Cy:</label>
+        <input type="number" id="cy" value="14">
+        <label for="f">f:</label>
+        <input type="number" id="f" value="3">
+        <label for="g">g:</label>
+        <input type="number" id="g" value="4">
+        <button onclick="calculateVector()">Berechnen</button>
+        <div class="calculation" id="vector-calculation"></div>
+    </div>
+
+    <div class="task">
+        <h2>3. Mittelpunktberechnung</h2>
+        <p>Berechne den Mittelpunkt \( M = \frac{A + C}{2} \):</p>
+        <label for="ax">Ax:</label>
+        <input type="number" id="ax" value="3">
+        <label for="ay">Ay:</label>
+        <input type="number" id="ay" value="14">
+        <label for="cx2">Cx:</label>
+        <input type="number" id="cx2" value="-2">
+        <label for="cy2">Cy:</label>
+        <input type="number" id="cy2" value="14">
+        <button onclick="calculateMidpoint()">Berechnen</button>
+        <div class="calculation" id="midpoint-calculation"></div>
+    </div>
+
+    <div class="task">
+        <h2>4. Komplexe Berechnungen</h2>
+        <p>Berechne \( C + h \cdot \frac{1}{\sqrt{i}} \):</p>
+        <label for="c2">C:</label>
+        <input type="number" id="c2" value="2">
+        <label for="h">h:</label>
+        <input type="number" id="h" value="6">
+        <label for="i">i:</label>
+        <input type="number" id="i" value="8">
+        <button onclick="calculateComplex()">Berechnen</button>
+        <div class="calculation" id="complex-calculation"></div>
+    </div>
+
+    <script>
+        function calculateBasic() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            const d = parseFloat(document.getElementById('d').value);
+            const e = parseFloat(document.getElementById('e').value);
+
+            const result1 = a - b / c;
+            const result2 = d + e;
+
+            document.getElementById('basic-calculation').innerHTML = `
+                <p>\( ${a} - ${b} : ${c} = ${result1.toFixed(2)} \)</p>
+                <p>\( ${d} + ${e} = ${result2.toFixed(2)} \)</p>
+            `;
+        }
+
+        function calculateVector() {
+            const cx = parseFloat(document.getElementById('cx').value);
+            const cy = parseFloat(document.getElementById('cy').value);
+            const f = parseFloat(document.getElementById('f').value);
+            const g = parseFloat(document.getElementById('g').value);
+
+            const dx = cx + f / g;
+            const dy = cy + f / g;
+
+            document.getElementById('vector-calculation').innerHTML = `
+                <p>\( D = (${dx.toFixed(2)}, ${dy.toFixed(2)}) \)</p>
+            `;
+        }
+
+        function calculateMidpoint() {
+            const ax = parseFloat(document.getElementById('ax').value);
+            const ay = parseFloat(document.getElementById('ay').value);
+            const cx = parseFloat(document.getElementById('cx2').value);
+            const cy = parseFloat(document.getElementById('cy2').value);
+
+            const mx = (ax + cx) / 2;
+            const my = (ay + cy) / 2;
+
+            document.getElementById('midpoint-calculation').innerHTML = `
+                <p>\( M = (${mx.toFixed(2)}, ${my.toFixed(2)}) \)</p>
+            `;
+        }
+
+        function calculateComplex() {
+            const c = parseFloat(document.getElementById('c2').value);
+            const h = parseFloat(document.getElementById('h').value);
+            const i = parseFloat(document.getElementById('i').value);
+
+            const result = c + h * (1 / Math.sqrt(i));
+
+            document.getElementById('complex-calculation').innerHTML = `
+                <p>\( ${c} + ${h} \cdot \frac{1}{\sqrt{${i}}} = ${result.toFixed(2)} \)</p>
+            `;
+        }
+    </script>
+</body>
+</html>
