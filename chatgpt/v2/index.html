@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Complex Number Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Complex Number Calculator</h1>
+
+    <!-- Rectangular to Polar -->
+    <h2>Rectangular to Polar</h2>
+    <div class="input-group">
+        <label for="real">Real Part:</label>
+        <input type="number" id="real" placeholder="Enter real part">
+    </div>
+    <div class="input-group">
+        <label for="imaginary">Imaginary Part:</label>
+        <input type="number" id="imaginary" placeholder="Enter imaginary part">
+    </div>
+    <button onclick="calculateRectToPolar()">Convert to Polar</button>
+
+    <!-- Polar to Rectangular -->
+    <h2>Polar to Rectangular</h2>
+    <div class="input-group">
+        <label for="magnitude">Magnitude:</label>
+        <input type="number" id="magnitude" placeholder="Enter magnitude">
+    </div>
+    <div class="input-group">
+        <label for="angle">Angle (degrees):</label>
+        <input type="number" id="angle" placeholder="Enter angle">
+    </div>
+    <button onclick="calculatePolarToRect()">Convert to Rectangular</button>
+
+    <!-- Results -->
+    <div id="results"></div>
+
+    <!-- Canvas for Visualization -->
+    <canvas id="grid" width="300" height="300"></canvas>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
